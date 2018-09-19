@@ -37,7 +37,9 @@ class StableSort
         self::decorateOriginalArray($array);
         uasort($array, function ($a, $b) use ($value_compare_func) {
             $result = call_user_func($value_compare_func, $a[1], $b[1]);
-            return $result == 0 ? $a[0] - $b[0] : $result;
+            if ($result == 0)
+                return $a[0] - $b[0];
+            return $result;
         });
         self::undecorateSortedArray($array);
     }
@@ -52,7 +54,9 @@ class StableSort
         self::decorateOriginalArray($array);
         usort($array, function ($a, $b) use ($value_compare_func) {
             $result = call_user_func($value_compare_func, $a[1], $b[1]);
-            return $result == 0 ? $a[0] - $b[0] : $result;
+            if ($result == 0)
+                return $a[0] - $b[0];
+            return $result;
         });
         self::undecorateSortedArray($array);
     }
