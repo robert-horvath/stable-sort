@@ -8,7 +8,19 @@
 ## Problem
 PHP sorting algorithms do not guarantee relative order if two members are equal.
 
-From [php.net](http://php.net/manual/en/array.sorting.php): **If any of these sort functions evaluates two members as equal then the order is undefined (the sorting is not stable).** 
+From [php.net](http://php.net/manual/en/array.sorting.php): **If any of these sort functions evaluates two members as equal then the order is undefined (the sorting is not stable).**
+
+## Notes
+This module's sorting algorithm do not return a ```bool``` value. 
+
+From [stackoverflow.com](https://stackoverflow.com/questions/5354891/why-would-sort-fail): PHP's sort function only returns false, if *zend_hash_sort* fails. *zend_hash_sort* is a macro, which actually calls *zend_hash_sort_ex*. This function was build pretty robust and returns SUCCESS in all cases - even if you pass arrays with totally uncompareable elements.
+
+The PHP [sort function](https://github.com/php/php-src/blob/master/ext/standard/array.c#L913) does some parameter checking with macros and has three rules. 
+* The function takes at least one argument and max 2 arguments.
+* The first argument must be an array
+* The second argument (if given) must be a long
+
+It is *not possible* to break any of the above rules with this module. Therefore, the return value is removed. (i.e.: ```void```)
  
 ## Example Usage  
 ```php

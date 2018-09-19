@@ -8,9 +8,12 @@ use PHPUnit\Framework\TestCase;
 final class AcceptTest extends TestCase
 {
 
-    public static function intcmp(array $a, array $b)
+    public function testUasortWithEmptyArray()
     {
-        return $a[0] - $b[0];
+        $actual = [];
+        $expected = [];
+        StableSort::uasort($actual, 'strcmp');
+        $this->assertSame($expected, $actual);
     }
 
     public function testUasort()
@@ -31,8 +34,15 @@ final class AcceptTest extends TestCase
             'x' => '3',
             'z' => '9'
         ];
+        StableSort::uasort($actual, 'strcmp');
+        $this->assertSame($expected, $actual);
+    }
 
-        $this->assertTrue(StableSort::uasort($actual, 'strcmp'));
+    public function testAsortWithEmptyArray()
+    {
+        $actual = [];
+        $expected = [];
+        StableSort::asort($actual);
         $this->assertSame($expected, $actual);
     }
 
@@ -54,8 +64,15 @@ final class AcceptTest extends TestCase
             'k' => 2,
             'z' => 9
         ];
+        StableSort::asort($actual);
+        $this->assertSame($expected, $actual);
+    }
 
-        $this->assertTrue(StableSort::asort($actual));
+    public function testUsortWithEmptyArray()
+    {
+        $actual = [];
+        $expected = [];
+        StableSort::usort($actual, 'strcmp');
         $this->assertSame($expected, $actual);
     }
 
@@ -74,10 +91,10 @@ final class AcceptTest extends TestCase
             [ 2, 'k' ],
             [ 9, 'z' ]
         ];
-        $valueCmpFunc = [ __CLASS__, 'intcmp' ];
         // @formatter:on
-
-        $this->assertTrue(StableSort::usort($actual, $valueCmpFunc));
+        StableSort::usort($actual, function (array $a, array $b) {
+            return $a[0] - $b[0];
+        });
         $this->assertSame($expected, $actual);
     }
 }
