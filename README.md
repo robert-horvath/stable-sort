@@ -6,11 +6,11 @@
 [Wikipedia](https://en.wikipedia.org/wiki/Category:Stable_sorts): Stable sorting algorithms maintain the relative order of records with equal keys (i.e. values). That is, a sorting algorithm is stable if whenever there are two records R and S with the same key and with R appearing before S in the original list, R will appear before S in the sorted list. 
 
 ## Problem
-[PHP sorting algorithms](http://php.net/manual/en/array.sorting.php) do not guarantee relative order if two members are equal.
+PHP sorting algorithms do not guarantee relative order if two members are equal.
 
-From php.net: **If any of these sort functions evaluates two members as equal then the order is undefined (the sorting is not stable).** 
-
-##Example Usage
+From [php.net](http://php.net/manual/en/array.sorting.php): **If any of these sort functions evaluates two members as equal then the order is undefined (the sorting is not stable).** 
+ 
+## Example Usage  
 ```php
 $arr = [
   'y' => '3',
