@@ -13,7 +13,7 @@ PHP sorting algorithms do not guarantee relative order if two members are equal.
 ## Notes
 All sorting algorithms return ```void``` value. This is contrary to PHP's built in sort functions, which return ```bool```.
 
-*PHP's sort function only returns false, if *zend_hash_sort* fails. *zend_hash_sort* is a macro, which actually calls *zend_hash_sort_ex*. This function was build pretty robust and returns SUCCESS in all cases - even if you pass arrays with totally uncompareable elements.* [stackoverflow.com](https://stackoverflow.com/questions/5354891/why-would-sort-fail)
+PHP's sort function only returns false, if *zend_hash_sort* fails. *zend_hash_sort* is a macro, which actually calls *zend_hash_sort_ex*. This function was built pretty robust and returns SUCCESS in all cases - even if you pass arrays with totally uncompareable elements. ([stackoverflow.com](https://stackoverflow.com/questions/5354891/why-would-sort-fail))
 
 The PHP [sort function](https://github.com/php/php-src/blob/master/ext/standard/array.c#L913) does some parameter checking with macros and has three rules. 
 * The function takes at least one argument and max 2 arguments.
